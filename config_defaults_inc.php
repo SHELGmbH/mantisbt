@@ -49,18 +49,18 @@
 	 * The default user name is "root".
 	 * @global string $g_db_username
 	 */
-	$g_db_username      = 'root';
+	$g_db_username      = 'mantis';
 	/**
 	 * Password for the specified user name. The default password is empty.
 	 * @global string $g_db_password
 	 */
-	$g_db_password      = '!hx123xl!';
+	$g_db_password      = 'mantis';
 	 /**
 	* Name of database that contains MantisBT tables.
 	* The default database name is "bugtracker".
 	* @global string $g_database_name
 	*/
-	$g_database_name    = 'mantis';
+	$g_database_name    = 'bugtracker';
 
 	/**
 	 * Database Schema Name - used in the case of db2.
