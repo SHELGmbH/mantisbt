@@ -815,6 +815,14 @@ function print_menu() {
 
 		# Manage Users (admins) or Manage Project (managers) or Manage Custom Fields
 		if( access_has_global_level( config_get( 'manage_site_threshold' ) ) ) {
+			if( config_get( 'enable_manage_project_menu' )) {
+				if( $t_current_project <> ALL_PROJECTS ) {
+					$t_link = helper_mantis_url( 'manage_proj_edit_page.php?project_id=' ) . $t_current_project;
+				} else {
+					$t_link = helper_mantis_url( 'manage_proj_page.php' );
+				}
+				$t_menu_options[] = "<a href=\"$t_link\">" . lang_get( 'manage_project' ) . '</a>';
+			}
 			$t_link = helper_mantis_url( 'manage_overview_page.php' );
 			$t_menu_options[] = "<a href=\"$t_link\">" . lang_get( 'manage_link' ) . '</a>';
 		} else {
