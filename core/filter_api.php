@@ -23,7 +23,7 @@
  */
 
 /**
- * requires current_user_api
+ * requires current_user_apifi
  */
 require_once( 'current_user_api.php' );
 /**
@@ -1191,10 +1191,17 @@ function filter_get_bug_rows( &$p_page_number, &$p_per_page, &$p_page_count, &$p
 			$t_top_project_ids = $t_project_ids;
 
 			foreach( $t_top_project_ids as $t_pid ) {
-				log_event( LOG_FILTERING, 'Getting sub-projects for project id @P' . $t_pid );
-				$t_subproject_ids = user_get_all_accessible_subprojects( $t_user_id, $t_pid );
-				if (!$t_subproject_ids) continue;
-				$t_project_ids = array_merge( $t_project_ids, $t_subproject_ids );
+				if( config_get( 'subprojects_bugfilter_if_noversion' ) ) {
+					$versions = version_get_all_rows($t_pid);
+				} else {
+					$versions = array();
+				}
+				if( count($versions) == 0 ) {				
+					log_event( LOG_FILTERING, 'Getting sub-projects for project id @P' . $t_pid );
+					$t_subproject_ids = user_get_all_accessible_subprojects( $t_user_id, $t_pid );
+					if (!$t_subproject_ids) continue;
+					$t_project_ids = array_merge( $t_project_ids, $t_subproject_ids );
+				}
 			}
 
 			$t_project_ids = array_unique( $t_project_ids );

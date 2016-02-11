@@ -3816,6 +3816,11 @@
 	 */
 	$g_subprojects_inherit_versions = ON;
 
+	/**
+	 * Consider Sub-projects in bug-filter, only for top projects without versions.
+	 */
+	$g_subprojects_bugfilter_if_noversion = OFF;
+
 	/**********************************
 	 * Debugging / Developer Settings *
 	 **********************************/
