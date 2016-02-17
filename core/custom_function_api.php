@@ -30,6 +30,10 @@ require_once( 'prepare_api.php' );
  * requires columns_api
  */
 require_once( 'columns_api.php' );
+/**
+ * requires icon_api
+ */
+require_once( 'icon_api.php' );
 
 # ## Custom Function API ###
 # Checks the provided bug and determines whether it should be included in the changelog
@@ -95,7 +99,7 @@ function custom_function_default_roadmap_print_issue( $p_issue_id, $p_issue_leve
 
 	$t_category = is_blank( $t_category_name ) ? '' : '<b>[' . string_display_line( $t_category_name ) . '] ['.$t_bug->platform.']</b> ';
 
-	echo utf8_str_pad( '', $p_issue_level * 6, '&#160;' ), '- ', $t_strike_start, string_get_bug_view_link( $p_issue_id ), ': ', $t_category, string_display_line_links( $t_bug->summary );
+	echo utf8_str_pad( '', $p_issue_level * 6, '&#160;' ), '- ', $t_strike_start, string_get_bug_view_link( $p_issue_id ), ': ', $t_category, print_status_icon($t_bug->priority), ' ', string_display_line_links( $t_bug->summary );
 
 	if( $t_bug->handler_id != 0 ) {
 		echo ' (', prepare_user_name( $t_bug->handler_id ), ')';
